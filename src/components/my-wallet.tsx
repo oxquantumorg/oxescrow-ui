@@ -5,34 +5,31 @@ import {
 } from '@solana/wallet-adapter-react';
 import {
     WalletModalProvider,
-    WalletDisconnectButton,
     WalletMultiButton,
 } from '@solana/wallet-adapter-react-ui';
 
 const MyWallet: React.FC = () => {
     // const { connection } = useConnection();
-    let walletAddress = "";
+    // let walletAddress = "";
 
     const wallet = useWallet();
-    if (wallet.connected && wallet.publicKey) {
-        walletAddress = wallet.publicKey.toString()
-    }
+    // if (wallet.connected && wallet.publicKey) {
+    //     walletAddress = wallet.publicKey.toString()
+    // }
 
     return (
-        <div className=''>
-            {wallet.connected &&
-                (<p>Your wallet is {walletAddress}</p> ||
-                    <p>Hello! Click the button to connect</p>)
-            }
-
-            <div className="multi-wrapper">
-                <span className="button-wrapper ">
-                    <WalletModalProvider>
-                        <WalletMultiButton />
-                    </WalletModalProvider>
-                </span>
-                {wallet.connected && <WalletDisconnectButton />}
-            </div>
+        <div className="">
+            <span className="">
+                <WalletModalProvider>
+                    <WalletMultiButton />
+                </WalletModalProvider>
+            </span>
+            {wallet.connected && wallet.publicKey && (
+                <div className='text-[20px] mt-[20px]'>
+                    <p> Sol Balance: 200 </p>
+                    <p> Usdt Balance: 200 </p>
+                </div>
+            )}
         </div>
     );
 };

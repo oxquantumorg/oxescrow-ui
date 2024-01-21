@@ -50,9 +50,10 @@ function App() {
             <h3 className="text-white text-center">
               LittleBiggy Escrow Systems
             </h3>
-            <div className="justify-center flex mt-10">
+            <div className="justify-center flex mt-5">
               <MyWallet /> <br />
             </div>
+            <div className="h-10"></div>
             <CreateEscrow />
           </header>
         </div>
