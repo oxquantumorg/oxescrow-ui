@@ -1,14 +1,4 @@
-# Solana React Quickstart
-
-This is a simple CRA app with TypeScript and Solana wallet connection through wallet-adapter
-
-Includes:
-
-- Typescript
-- CRA
-- Solana wallet adapter
-
-![screenshot](./screenshot.jpg)
+# LittleBiggy Payments Frontend
 
 ## Run
 
@@ -37,10 +27,6 @@ const transactionHash = await web3.sendAndConfirmRawTransaction(
   transaction.serialize()
 );
 ```
-
-## If you use anchor
-
-swap out `useWallet` with `useAnchorWallet` in `MyWallet.tsx`
 
 ## License
 
