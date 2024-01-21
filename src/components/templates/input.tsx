@@ -16,7 +16,7 @@ export default function Input({ title, value, onChangeHandler }: Props) {
 
             <input
                 value={value}
-                onChange={onChangeHandler}
+                onChange={(e) => onChangeHandler(e.target.value)}
                 type="text"
                 id="large-input"
                 className="bg-gray-50 border border-gray-300 
