@@ -16,7 +16,8 @@ import {
   // getTorusWallet,
 } from "@solana/wallet-adapter-wallets";
 // import { clusterApiUrl } from "@solana/web3.js";
-import MyWallet from "./components/MyWallet";
+import MyWallet from "./components/my-wallet";
+import CreateEscrow from "./pages/create-escrow";
 
 function App() {
   // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
@@ -43,30 +44,16 @@ function App() {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets}>
         <div className="App">
+
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.tsx</code> and save to reload.
-            </p>
-            <a
-              className="text-red-200"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-
-            <a
-              className="App-link"
-              href="https://solana-labs.github.io/solana-web3.js/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Solana Web3 docs
-            </a>
-
-            <MyWallet />
+            <img src={logo} className="App-logo mx-auto" alt="logo" />
+            <h3 className="text-white text-center">
+              LittleBiggy Escrow Systems
+            </h3>
+            <div className="justify-center flex mt-10">
+              <MyWallet /> <br />
+            </div>
+            <CreateEscrow />
           </header>
         </div>
       </WalletProvider>
