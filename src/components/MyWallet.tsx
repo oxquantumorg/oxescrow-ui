@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-    useAnchorWallet,
-    useConnection,
+    // useConnection,
     useWallet,
 } from '@solana/wallet-adapter-react';
 import {
@@ -11,12 +10,8 @@ import {
 } from '@solana/wallet-adapter-react-ui';
 
 const MyWallet: React.FC = () => {
-    const { connection } = useConnection();
+    // const { connection } = useConnection();
     let walletAddress = "";
-
-    // if you use anchor, use the anchor hook instead
-    // const wallet = useAnchorWallet();
-    // const walletAddress = wallet?.publicKey.toString();
 
     const wallet = useWallet();
     if (wallet.connected && wallet.publicKey) {
@@ -26,8 +21,8 @@ const MyWallet: React.FC = () => {
     return (
         <>
             {wallet.connected &&
-                <p>Your wallet is {walletAddress}</p> ||
-                <p>Hello! Click the button to connect</p>
+                (<p>Your wallet is {walletAddress}</p> ||
+                    <p>Hello! Click the button to connect</p>)
             }
 
             <div className="multi-wrapper">

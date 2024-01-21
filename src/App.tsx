@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "./logo.svg";
-import "./App.css";
 
 import {
   ConnectionProvider,
@@ -14,17 +13,17 @@ import {
   getSolflareWallet,
   getSolletExtensionWallet,
   getSolletWallet,
-  getTorusWallet,
+  // getTorusWallet,
 } from "@solana/wallet-adapter-wallets";
-import { clusterApiUrl } from "@solana/web3.js";
-import MyWallet from "./MyWallet";
+// import { clusterApiUrl } from "@solana/web3.js";
+import MyWallet from "./components/MyWallet";
 
 function App() {
   // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
   const network = WalletAdapterNetwork.Mainnet;
 
   // You can also provide a custom RPC endpoint
-  const endpoint = React.useMemo(() => clusterApiUrl(network), [network]);
+  const endpoint = "http://127.0.0.1:8899" //React.useMemo(() => clusterApiUrl(network), [network]);
 
   // @solana/wallet-adapter-wallets includes all the adapters but supports tree shaking --
   // Only the wallets you configure here will be compiled into your application
@@ -50,7 +49,7 @@ function App() {
               Edit <code>src/App.tsx</code> and save to reload.
             </p>
             <a
-              className="App-link"
+              className="text-red-200"
               href="https://reactjs.org"
               target="_blank"
               rel="noopener noreferrer"
