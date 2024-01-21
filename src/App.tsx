@@ -15,19 +15,18 @@ import {
   getSolletWallet,
   // getTorusWallet,
 } from "@solana/wallet-adapter-wallets";
-// import { clusterApiUrl } from "@solana/web3.js";
+import { clusterApiUrl } from "@solana/web3.js";
 import MyWallet from "./components/my-wallet";
 import CreateEscrow from "./pages/create-escrow";
 
 function App() {
   // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
-  const network = WalletAdapterNetwork.Mainnet;
+  const network = WalletAdapterNetwork.Devnet;
 
   // You can also provide a custom RPC endpoint
-  const endpoint = "http://127.0.0.1:8899" //React.useMemo(() => clusterApiUrl(network), [network]);
+  const endpoint = React.useMemo(() => clusterApiUrl(network), [network]);
+  // const endpoint = "http://127.0.0.1:8899"
 
-  // @solana/wallet-adapter-wallets includes all the adapters but supports tree shaking --
-  // Only the wallets you configure here will be compiled into your application
   const wallets = React.useMemo(
     () => [
       getPhantomWallet(),

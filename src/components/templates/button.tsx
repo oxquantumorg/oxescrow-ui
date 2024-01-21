@@ -22,7 +22,7 @@ export default function Button({ text, onClickHandler, disabled }: Props) {
     
     return (
         <button
-            onClick={onClickHandler}
+            onClick={!disabled ? onClickHandler : () => {}}
             type="button"
             className={`${classNames} ${disabled && classNameDisabled}`}>
             {text}
