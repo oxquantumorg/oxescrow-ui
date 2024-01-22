@@ -6,10 +6,17 @@ import {
   WalletProvider,
 } from "@solana/wallet-adapter-react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import {PhantomWalletAdapter} from "@solana/wallet-adapter-phantom";
 import { clusterApiUrl } from "@solana/web3.js";
 import MyWallet from "./components/my-wallet";
 import CreateEscrow from "./pages/create-escrow";
+import {
+  getLedgerWallet,
+  getPhantomWallet,
+  getSlopeWallet,
+  getSolflareWallet,
+  getSolletExtensionWallet,
+  getSolletWallet,
+} from "@solana/wallet-adapter-wallets";
 
 function App() {
   // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
@@ -18,11 +25,22 @@ function App() {
   // You can also provide a custom RPC endpoint
   const endpoint = React.useMemo(() => clusterApiUrl(network), [network]);
   // const endpoint = "http://127.0.0.1:8899"
+  const wallets = React.useMemo(
+    () => [
+      getLedgerWallet(),
+      getPhantomWallet(),
+      getSlopeWallet(),
+      getSolflareWallet(),
+      getSolletWallet({ network }),
+      getSolletExtensionWallet({ network }),
+    ],
+    [network]
+  );
 
 
   return (
     <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={[new PhantomWalletAdapter()]}>
+      <WalletProvider wallets={wallets}>
         <div className="App">
 
           <header className="App-header">
