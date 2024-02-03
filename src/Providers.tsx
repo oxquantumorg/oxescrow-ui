@@ -11,25 +11,29 @@ import {
   getPhantomWallet,
   getSlopeWallet,
   getSolflareWallet,
-  getSolletExtensionWallet,
-  getSolletWallet,
+  // getSolletExtensionWallet,
+  // getSolletWallet,
 } from "@solana/wallet-adapter-wallets";
+import { config } from "./utils/config";
 
 function Providers({ children }: any) {
   // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
   const network = WalletAdapterNetwork.Devnet;
-  const endpoint = React.useMemo(() => clusterApiUrl(network), [network]);
-  // const endpoint = "http://127.0.0.1:8899"
+  console.log(network);
+
+  const localhost = "http://127.0.0.1:8899"
+  const clusterUrl = React.useMemo(() => clusterApiUrl(network), [network])
+  const endpoint = config.localhost ? localhost : clusterUrl;
   const wallets = React.useMemo(
     () => [
       getLedgerWallet(),
       getPhantomWallet(),
       getSlopeWallet(),
       getSolflareWallet(),
-      getSolletWallet({ network }),
-      getSolletExtensionWallet({ network }),
+      // getSolletWallet({ network }),
+      // getSolletExtensionWallet({ network }),
     ],
-    [network]
+    []
   );
 
   return (

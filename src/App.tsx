@@ -4,10 +4,11 @@ import MyWallet from "./components/my-wallet";
 import CreateEscrow from "./pages/create-escrow";
 import { TokenInfoHook } from "./web3hooks/TokenInfoHook";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { config } from "./utils/config";
 
 function App() {
   const wallet = useWallet();
-  const [mintPublickey,] = useState('BhMQMCcuNZUiBW8CWFkeSipwYcqEu3Gp939HdrsY37VG')
+  const [mintPublickey,] = useState(config.usdcMintPubKey.toString())
   const { balance, tokenBalance } = TokenInfoHook(mintPublickey)
 
   return (

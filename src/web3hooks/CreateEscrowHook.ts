@@ -1,7 +1,7 @@
 import {
   createInitializeAccountInstruction,
-  createTransferInstruction,
-  getAssociatedTokenAddress,
+  // createTransferInstruction,
+  // getAssociatedTokenAddress,
 } from "@solana/spl-token";
 import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
@@ -32,11 +32,11 @@ export const CreateEscrowHook = (
       const amountNum = Number(amount)
 
       const usdcMintPubKey = config.usdcMintPubKey;
-      const senderUsdcAccountPubKey = await getAssociatedTokenAddress(
-        usdcMintPubKey, // mint
-        senderPubKey, // owner
-        false // allow owner off curve
-      );
+      // const senderUsdcAccountPubKey = await getAssociatedTokenAddress(
+      //   usdcMintPubKey, // mint
+      //   senderPubKey, // owner
+      //   false // allow owner off curve
+      // );
 
       const tempTokenAccountIX = await createTokenAccountIX(
         connection,
@@ -48,12 +48,12 @@ export const CreateEscrowHook = (
         usdcMintPubKey,
         senderPubKey
       );
-      const transferUsdcToTempAccIX = createTransferInstruction(
-        senderUsdcAccountPubKey,
-        tempUsdcAccountPubKey,
-        senderPubKey,
-        amountNum
-      );
+      // const transferUsdcToTempAccIX = createTransferInstruction(
+      //   senderUsdcAccountPubKey,
+      //   tempUsdcAccountPubKey,
+      //   senderPubKey,
+      //   amountNum
+      // );
       const escrowAccountIX = await createEscrowAccountIX(
         connection,
         senderPubKey,
@@ -71,7 +71,7 @@ export const CreateEscrowHook = (
       const tx = new Transaction().add(
         tempTokenAccountIX,
         initTempAccountIX,
-        transferUsdcToTempAccIX,
+        // transferUsdcToTempAccIX,
         escrowAccountIX,
         initEscrowIX
       );

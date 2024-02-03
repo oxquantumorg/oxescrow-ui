@@ -1,7 +1,9 @@
 import { PublicKey } from "@solana/web3.js";
 
 export const config = {
-  usdcMintPubKey: new PublicKey("5p3hADwWvkt16H9RmtirzwnZxaemVkPQbL5tPMrPZmBt"),
-  escrowProgramId: new PublicKey("Bm5SDVKRqHuQxUSjVGA4cYFWTVRYS14HYy7M4GxtZkht"),
+  localhost: false,
+  usdcMintPubKey: new PublicKey("5CzMpU4F7pyQdLvFLTrweqD3sAyuvFSYAA7keq6PQPaH"),
+  escrowProgramId: new PublicKey(
+    "JDvqLZ7ytrWUrPeDArR6E7XQe84VJExm6XvQHV5wst6N"
+  ),
 };
-

@@ -58,14 +58,14 @@ export const createEscrowIX = async (
         isWritable: false,
       },
       {
-        pubkey: tempUsdcAccountPubKey,
-        isSigner: false,
-        isWritable: true,
-      },
-      {
         pubkey: receiverPubKey,
         isSigner: false,
         isWritable: false,
+      },
+      {
+        pubkey: tempUsdcAccountPubKey,
+        isSigner: false,
+        isWritable: true,
       },
       { pubkey: escrowPubKey, isSigner: false, isWritable: true },
       { pubkey: SYSVAR_RENT_PUBKEY, isSigner: false, isWritable: false },
