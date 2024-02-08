@@ -17,7 +17,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo mx-auto" alt="logo" />
         <h3 className="text-white text-center">
-          LittleBiggy Escrow Systems
+          Oxescrow Escrow Systems
         </h3>
         <h3 className="text-white text-center">
           {wallet.connected && wallet.publicKey && (

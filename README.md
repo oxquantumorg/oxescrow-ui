@@ -1,4 +1,4 @@
-# LittleBiggy Payments Frontend
+# Oxescrow Payments Frontend
 
 ## Run
 
