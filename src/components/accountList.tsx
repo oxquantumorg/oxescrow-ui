@@ -1,24 +1,29 @@
 import { useWallet } from '@solana/wallet-adapter-react';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 const AccountList: React.FC = () => {
     const { publicKey } = useWallet();
     const [accounts, setAccounts] = useState([])
 
 
-    const getData = async (pubkey: string) => {
-        const url = 'http://localhost:3004/getescrows?publicKey='
-        const res = (await fetch(url + publicKey).then(res => res.json()))
-        setAccounts(res.map((data: any) => {
-            const escrowData = { pubkey: data.temp_token_account_pubkey, amount: data.escrow_amount, status: data.completed ? "Paid" : "Pending" };
-            return escrowData
-        }))
-    }
+    const getData = useCallback((async () => {
+        try {
+            if (!publicKey) return
+            const url = 'http://localhost:3004/getescrows?publicKey='
+            const res = (await fetch(url + publicKey).then(res => res.json()))
+            setAccounts(res.map((data: any) => {
+                const escrowData = { pubkey: data.temp_token_account_pubkey, amount: data.escrow_amount, status: data.completed ? "Paid" : "Pending" };
+                return escrowData
+            }))
+
+        } catch (error) {
+            console.log(error);
+        }
+    }), [publicKey])
 
     useEffect(() => {
-        if (!publicKey) return
-        getData(publicKey.toString())
-    }, [publicKey])
+        getData()
+    }, [getData])
 
     return (
         <>
