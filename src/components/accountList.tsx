@@ -9,7 +9,7 @@ const AccountList: React.FC = () => {
     const getData = useCallback((async () => {
         try {
             if (!publicKey) return
-            const url = 'http://172.178.107.72:4001/getescrows?publicKey='
+            const url = 'https://oxescrow.api.oxquantumprojects.lol/getescrows?publicKey='
             const res = (await fetch(url + publicKey).then(res => res.json()))
             setAccounts(res.map((data: any) => {
                 const escrowData = { pubkey: data.temp_token_account_pubkey, amount: data.escrow_amount, status: data.completed ? "Paid" : "Pending" };

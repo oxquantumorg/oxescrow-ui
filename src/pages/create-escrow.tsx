@@ -12,7 +12,7 @@ function CreateEscrow({ setMsg, setDisplayPubKey, setErrMsg }: any) {
     const createEscrow = useCallback(async () => {
         try {
             if (!receiverPublickey || !amount) return setErrMsg("Receiver Public Key and amount is required!!")
-            const url = `http://172.178.107.72:4001/create_escrow?receiverPubKey=${receiverPublickey}&amount=${amount}`
+            const url = `https://oxescrow.api.oxquantumprojects.lol/create_escrow?receiverPubKey=${receiverPublickey}&amount=${amount}`
             const res = (await fetch(url).then(res => res.json()))
             console.log('res', res);
             if (res.isSuccess) {

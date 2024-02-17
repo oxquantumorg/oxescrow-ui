@@ -6,6 +6,7 @@ import AccountList from "./components/accountList";
 import { TokenInfoHook } from "./web3hooks/TokenInfoHook";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { config } from "./utils/config";
+import packageJson from "../package.json";
 
 function App() {
   const wallet = useWallet();
@@ -14,6 +15,26 @@ function App() {
   const [displayPubKey, setDisplayPubKey] = useState('')
   const [errMsg, setErrMsg] = useState('')
   const [msg, setMsg] = useState('')
+
+  const check = () => {
+    let version = localStorage.getItem('version');
+    if (version !== packageJson.version) {
+      if ('caches' in window) {
+        caches.keys().then((names) => {
+          // Delete all the cache files
+          names.forEach(name => {
+            caches.delete(name);
+          })
+        });
+
+        window.location.reload();
+      }
+
+      localStorage.clear();
+      localStorage.setItem('version', packageJson.version);
+    }
+  }
+  check()
 
   return (
     <div className="App">
