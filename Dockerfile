@@ -7,5 +7,4 @@ COPY . .
 
 RUN yarn install
 EXPOSE 4000
-RUN yarn global add serve
-RUN serve -s ./build
+CMD yarn serve
