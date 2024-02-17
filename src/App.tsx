@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import MyWallet from "./components/myWallet";
 import CreateEscrow from "./pages/create-escrow";
@@ -34,7 +34,10 @@ function App() {
       localStorage.setItem('version', packageJson.version);
     }
   }
-  check()
+
+  useEffect(() => {
+    check()
+  }, [])
 
   return (
     <div className="App">
