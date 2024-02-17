@@ -6,7 +6,8 @@
     "tailwind": "npx tailwindcss -i ./src/input.css -o ./src/output.css",
     "tw": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "start": "npm run tailwind && react-app-rewired --openssl-legacy-provider start",
-    "build": "npm run tailwind && react-app-rewired build",
+    "build": "npm run tailwind && react-app-rewired --openssl-legacy-provider build",
+    "serve": "react-app-rewired build && node serve.js",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
   },
@@ -29,6 +30,7 @@
     "bn.js": "^5.2.1",
     "borsh": "^0.6.0",
     "buffer-layout": "^1.2.2",
+    "express": "^4.18.2",
     "react": "^17.0.2",
     "react-app-rewired": "^2.2.1",
     "react-dom": "^17.0.2",
