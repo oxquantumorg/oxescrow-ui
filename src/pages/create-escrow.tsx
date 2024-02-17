@@ -11,7 +11,7 @@ function CreateEscrow({ setMsg, setDisplayPubKey, setErrMsg }: any) {
 
     const createEscrow = useCallback(async () => {
         try {
-            if (!publicKey) return
+            if (!receiverPublickey || !amount) return setErrMsg("Receiver Public Key and amount is required!!")
             const url = `http://172.178.107.72:4001/create_escrow?receiverPubKey=${receiverPublickey}&amount=${amount}`
             const res = (await fetch(url).then(res => res.json()))
             console.log('res', res);
@@ -24,7 +24,7 @@ function CreateEscrow({ setMsg, setDisplayPubKey, setErrMsg }: any) {
         } catch (error) {
             console.log(error);
         }
-    }, [receiverPublickey, amount])
+    }, [receiverPublickey, amount, setDisplayPubKey, setErrMsg, setMsg])
 
     useEffect(() => {
         if (publicKey == null) return
