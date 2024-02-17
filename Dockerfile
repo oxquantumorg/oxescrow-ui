@@ -5,6 +5,6 @@ WORKDIR ./
 COPY package.json yarn.lock ./
 COPY . .
 
+RUN yarn install
 EXPOSE 4000
-
 CMD yarn serve
