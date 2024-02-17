@@ -21,7 +21,7 @@ function Providers({ children }: any) {
   const network = WalletAdapterNetwork.Devnet;
   console.log(network);
 
-  const localhost = "http://127.0.0.1:8899"
+  const localhost = undefined //"http://127.0.0.1:8899"
   const clusterUrl = React.useMemo(() => clusterApiUrl(network), [network])
   const endpoint = config.localhost ? localhost : clusterUrl;
   const wallets = React.useMemo(
