@@ -7,7 +7,7 @@ import Providers from './Providers';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Providers children={<App />} />
+    {/* <Providers children={<App />} /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
