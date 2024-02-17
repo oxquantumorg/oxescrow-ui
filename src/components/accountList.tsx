@@ -9,7 +9,7 @@ const AccountList: React.FC = () => {
     const getData = useCallback((async () => {
         try {
             if (!publicKey) return
-            const url = 'http://localhost:3004/getescrows?publicKey='
+            const url = 'http://172.178.107.72:4001/getescrows?publicKey='
             const res = (await fetch(url + publicKey).then(res => res.json()))
             setAccounts(res.map((data: any) => {
                 const escrowData = { pubkey: data.temp_token_account_pubkey, amount: data.escrow_amount, status: data.completed ? "Paid" : "Pending" };
@@ -44,7 +44,7 @@ const AccountList: React.FC = () => {
                     </thead>
                     <tbody>
                         {accounts.map((acc: any) => (
-                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <tr key={acc.pubkey} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {acc.pubkey}
                                 </th>

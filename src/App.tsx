@@ -11,6 +11,9 @@ function App() {
   const wallet = useWallet();
   const [mintPublickey,] = useState(config.usdcMintPubKey.toString())
   const { balance, tokenBalance } = TokenInfoHook(mintPublickey)
+  const [displayPubKey, setDisplayPubKey] = useState('')
+  const [errMsg, setErrMsg] = useState('')
+  const [msg, setMsg] = useState('')
 
   return (
     <div className="App">
@@ -31,11 +34,24 @@ function App() {
           <MyWallet /> <br />
         </div>
         <div className="h-10"></div>
-        <div className="flex w-[80%] mx-auto mt-10">
-          <div className="w-[50%]">
-            <CreateEscrow />
+        <div className="w-[80%] mx-auto mt-10">
+
+          {errMsg && (
+            <p className='text-red-500 text-sm'>{errMsg}</p>
+          )}
+          {msg && (
+            <p className='text-green-500 text-sm'>{msg}</p>
+          )}
+          {displayPubKey && (
+            <h1 className='text-blue-500 text-sm'>Escrow Mint Account: {displayPubKey}</h1>
+          )}
+        </div>
+        <div className="flex mx-auto my-20">
+
+          <div className="w-[40%]">
+            <CreateEscrow setDisplayPubKey={setDisplayPubKey} setErrMsg={setErrMsg} setMsg={setMsg} />
           </div>
-          <div className="w-[50%]">
+          <div className="w-[40%]">
             <AccountList />
           </div>
         </div>
