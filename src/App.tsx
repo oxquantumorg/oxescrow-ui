@@ -11,7 +11,7 @@ import packageJson from "../package.json";
 function App() {
   const wallet = useWallet();
   const [mintPublickey,] = useState(config.usdcMintPubKey.toString())
-  const { balance, tokenBalance } = TokenInfoHook(mintPublickey)
+  const { balance } = TokenInfoHook(mintPublickey)
   const [displayPubKey, setDisplayPubKey] = useState('')
   const [errMsg, setErrMsg] = useState('')
   const [msg, setMsg] = useState('')
@@ -50,7 +50,7 @@ function App() {
           {wallet.connected && wallet.publicKey && (
             <div className='text-[20px] mt-[20px]'>
               <p> Sol Balance: {balance.toFixed(2)} </p>
-              <p> Token Balance: {tokenBalance.toFixed(2)} </p>
+              {/* <p> Token Balance: {tokenBalance.toFixed(2)} </p> */}
             </div>
           )}
         </h3>
