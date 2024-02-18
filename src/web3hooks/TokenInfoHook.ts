@@ -6,7 +6,7 @@ import { useCallback, useState } from "react";
 
 export const TokenInfoHook = (mintPubkeyString: string) => {
   const [balance, setBalance] = useState(0);
-  const [tokenBalance, setTokenBalance] = useState(0);
+  const [tokenBalance,] = useState(0);
   const { connection } = useConnection();
   const { publicKey: senderPubKey, signTransaction } = useWallet();
 
