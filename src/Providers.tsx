@@ -14,7 +14,7 @@ import {
   // getSolletExtensionWallet,
   // getSolletWallet,
 } from "@solana/wallet-adapter-wallets";
-import { config } from "./utils/config";
+// import { config } from "./utils/config";
 
 function Providers({ children }: any) {
   // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
