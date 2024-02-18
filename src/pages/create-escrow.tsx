@@ -11,8 +11,8 @@ function CreateEscrow({ setMsg, setDisplayPubKey, setErrMsg }: any) {
 
     const createEscrow = useCallback(async () => {
         try {
-            if (!receiverPublickey || !amount) return setErrMsg("Receiver Public Key and amount is required!!")
-            const url = `https://oxescrow.api.oxquantumprojects.lol/create_escrow?receiverPubKey=${receiverPublickey}&amount=${amount}`
+            if (!receiverPublickey || !amount || !publicKey) return setErrMsg("Receiver Public Key and amount is required!!")
+            const url = `https://oxescrow.api.oxquantumprojects.lol/create_escrow?senderPublicKey=${publicKey}&receiverPubKey=${receiverPublickey}&amount=${amount}`
             const res = (await fetch(url).then(res => res.json()))
             console.log('res', res);
             if (res.isSuccess) {
@@ -24,7 +24,7 @@ function CreateEscrow({ setMsg, setDisplayPubKey, setErrMsg }: any) {
         } catch (error) {
             console.log(error);
         }
-    }, [receiverPublickey, amount, setDisplayPubKey, setErrMsg, setMsg])
+    }, [receiverPublickey, amount, publicKey, setDisplayPubKey, setErrMsg, setMsg])
 
     useEffect(() => {
         if (publicKey == null) return
