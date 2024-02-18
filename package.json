@@ -1,6 +1,6 @@
 {
   "name": "solana-frontend-quickstart",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "scripts": {
     "tailwind": "npx tailwindcss -i ./src/input.css -o ./src/output.css",
