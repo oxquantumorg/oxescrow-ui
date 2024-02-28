@@ -21,15 +21,14 @@ const AccountList: React.FC = () => {
         }
     }), [publicKey])
 
-
-
     useEffect(() => {
-        setInterval(() => {
+        const interval = setInterval(() => {
             console.log("refreshing...");
             getData();
         }, 6000);
-        getData()
-    }, [getData])
+
+        return () => clearInterval(interval);
+    }, [getData]);
 
     return (
         <>
