@@ -74,7 +74,7 @@ function App() {
           </div>
           <div className="w-[94%] md:w-[50%] mb-20">
             <div className="flex mb-4">
-              <Button onClickHandler={setShowHistory} disabled={!!publicKey} text="Show history &gt;&gt;" />
+              <Button onClickHandler={() => setShowHistory(!showHistory)} disabled={!!publicKey} text="Show history &gt;&gt;" />
               <div className="text-[17px] ml-8 text-blue-500">
                 <p> Sol Balance: {balance.toFixed(2)} </p>
                 <p> Usdc Balance: {tokenBalance.toFixed(2)} </p>
