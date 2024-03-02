@@ -9,8 +9,8 @@ export default function Button({ text, onClickHandler, disabled }: Props) {
     const classNames = `focus:outline-none text-white 
     bg-mainPurple 
     font-medium rounded-lg 
-    text-sm px-5 py-2.5 mb-2
-    
+    text-sm px-5 py-3 mb-2
+    rounded-lg
     hover:ring-4
     focus:ring-4
     

@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import Input from '../components/templates/input'
 import Button from '../components/templates/button'
 import { useWallet } from '@solana/wallet-adapter-react'
+import MyWallet from '../components/myWallet'
 
-function CreateEscrow({ setMsg, setDisplayPubKey, setErrMsg }: any) {
+function CreateEscrow({ setMsg, setErrMsg }: any) {
     const [receiverPublickey, setReceiverPublickey] = useState('')
 
     const [amount, setAmount] = useState('2')
@@ -11,12 +12,13 @@ function CreateEscrow({ setMsg, setDisplayPubKey, setErrMsg }: any) {
 
     const createEscrow = useCallback(async () => {
         try {
-            if (!receiverPublickey || !amount || !publicKey) return setErrMsg("Receiver Public Key and amount is required!!")
-            const url = `https://oxescrow.api.oxquantumprojects.lol/create_escrow?senderPublicKey=${publicKey}&receiverPubKey=${receiverPublickey}&amount=${amount}`
+            if (!publicKey) return setErrMsg("Please connect your wallet to continue")
+            if (!amount) return setErrMsg("Escrow amount is required!!")
+            const url = `https://oxescrow.api.oxquantumprojects.lol/create_escrow?initializerPublicKey=${publicKey}&amount=${amount}`
             const res = (await fetch(url).then(res => res.json()))
-            console.log('res', res);
+
             if (res.isSuccess) {
-                setDisplayPubKey(res.data.escrowAcc)
+                setReceiverPublickey(res.data.escrowAcc)
                 setMsg(res.message)
             } else {
                 setErrMsg(res.message)
@@ -24,19 +26,19 @@ function CreateEscrow({ setMsg, setDisplayPubKey, setErrMsg }: any) {
         } catch (error) {
             console.log(error);
         }
-    }, [receiverPublickey, amount, publicKey, setDisplayPubKey, setErrMsg, setMsg])
+    }, [amount, publicKey, setReceiverPublickey, setErrMsg, setMsg])
 
-    useEffect(() => {
-        if (publicKey == null) return
-        setReceiverPublickey(publicKey.toString())
-    }, [publicKey])
     return (
         <form className="max-w-sm mx-auto">
+            <h1 className='text-blue-500 text-[15px] mb-5'>
+                Enter the expected USDT amount. Our API will generate a unique address for escrow.
+                Share this address with the sender to receive the escrowed funds securely.</h1>
+
             <div className="mb-5">
                 <Input
                     onChangeHandler={setReceiverPublickey}
                     value={receiverPublickey}
-                    title='Preferred receiving public key'
+                    title='Deposit address'
                 />
             </div>
             <div className="mb-5">
@@ -46,7 +48,17 @@ function CreateEscrow({ setMsg, setDisplayPubKey, setErrMsg }: any) {
                     title='Amount to receive'
                 />
             </div>
-            <Button text='Send transaction' disabled={!publicKey} onClickHandler={createEscrow} />
+
+            {!publicKey &&
+                <div className="justify-center flex mt-5">
+                    <MyWallet /> <br />
+                </div>
+            }
+            {publicKey &&
+                <div className="justify-center flex mt-7">
+                    <Button text='Generate Escrow Account' disabled={!publicKey} onClickHandler={createEscrow} />
+                </div>
+            }
         </form>
 
     )

@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
-import MyWallet from "./components/myWallet";
 import CreateEscrow from "./pages/create-escrow";
 import AccountList from "./components/accountList";
 import { TokenInfoHook } from "./web3hooks/TokenInfoHook";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { config } from "./utils/config";
 import packageJson from "../package.json";
+import Button from "./components/templates/button";
+import { shortenAddress } from "./utils/helpers";
 
 function App() {
-  const wallet = useWallet();
-  const [mintPublickey,] = useState(config.usdcMintPubKey.toString())
-  const { balance } = TokenInfoHook(mintPublickey)
-  const [displayPubKey, setDisplayPubKey] = useState('')
+  const { publicKey } = useWallet();
+
+  const { balance, tokenBalance } = TokenInfoHook()
   const [errMsg, setErrMsg] = useState('')
+  const [showHistory, setShowHistory] = useState(false)
   const [msg, setMsg] = useState('')
 
   const check = () => {
@@ -44,39 +44,41 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo mx-auto" alt="logo" />
         <h3 className="text-white text-center">
-          Oxescrow Systems
+          Welcome to Oxescrow
         </h3>
         <h3 className="text-white text-center">
-          {wallet.connected && wallet.publicKey && (
-            <div className='text-[20px] mt-[20px]'>
-              <p> Sol Balance: {balance.toFixed(2)} </p>
-              {/* <p> Token Balance: {tokenBalance.toFixed(2)} </p> */}
-            </div>
-          )}
-        </h3>
-        <div className="justify-center flex mt-5">
-          <MyWallet /> <br />
-        </div>
-        <div className="h-10"></div>
-        <div className="w-[80%] mx-auto mt-10">
-
-          {errMsg && (
-            <p className='text-red-500 text-sm'>{errMsg}</p>
-          )}
-          {msg && (
-            <p className='text-green-500 text-sm'>{msg}</p>
-          )}
-          {displayPubKey && (
-            <h1 className='text-blue-500 text-sm'>Escrow Mint Account: {displayPubKey}</h1>
-          )}
-        </div>
-        <div className="flex mx-auto my-20">
-
-          <div className="w-[40%]">
-            <CreateEscrow setDisplayPubKey={setDisplayPubKey} setErrMsg={setErrMsg} setMsg={setMsg} />
+          <div className='text-[20px] mt-[10px]'>
+            <p> Connected wallet </p>
+            <p className="text-blue-400 font-semibold text-[17px]">{publicKey && shortenAddress(publicKey.toString())}</p>
           </div>
-          <div className="w-[40%]">
-            <AccountList />
+        </h3>
+
+        <div className="flex justify-center mt-2 flex-col items-center">
+          <div className="md:w-[50%] mb-8">
+            <div className="max-w-sm mx-auto">
+              {errMsg && (
+                <p className='text-red-500 text-sm'>{errMsg}</p>
+              )}
+              {msg && (
+                <p className='text-green-500 text-sm'>{msg}</p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex justify-center mt-2 flex-col items-center">
+          <div className="md:w-[50%] mb-20">
+            <CreateEscrow setErrMsg={setErrMsg} setMsg={setMsg} />
+          </div>
+          <div className="w-[100%] md:w-[50%] mb-20">
+            <div className="flex mb-4">
+              <Button onClickHandler={setShowHistory} disabled={!!publicKey} text="Show history &gt;&gt;" />
+              <div className="text-[17px] ml-8 text-blue-500">
+                <p> Sol Balance: {balance.toFixed(2)} </p>
+                <p> Usdt Balance: {tokenBalance.toFixed(2)} </p>
+              </div>
+            </div>
+            <AccountList showHistory={showHistory} />
           </div>
         </div>
       </header>

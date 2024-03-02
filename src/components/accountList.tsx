@@ -1,10 +1,12 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 import React, { useCallback, useEffect, useState } from 'react';
+interface Props {
+    showHistory: boolean
+}
 
-const AccountList: React.FC = () => {
+export default function AccountList({ showHistory }: Props) {
     const { publicKey } = useWallet();
     const [accounts, setAccounts] = useState([])
-
 
     const getData = useCallback((async () => {
         try {
@@ -48,20 +50,23 @@ const AccountList: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {accounts.map((acc: any) => (
-                            <tr key={acc.pubkey} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {acc.pubkey}
-                                </th>
-                                <td className="px-6 py-4">
-                                    {acc.amount}
-                                </td>
-                                <td className="px-6 py-4">
-                                    {acc.status}
-                                </td>
-                            </tr>
-                        ))}
+                        {showHistory && (
+                            accounts.map((acc: any) => (
+                                <tr key={acc.pubkey} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {acc.pubkey}
+                                    </th>
+                                    <td className="px-6 py-4">
+                                        {acc.amount}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {acc.status}
+                                    </td>
+                                </tr>
+                            ))
+                        )}
 
+                        {!showHistory && <div className='text-md p-4'>History turned off</div>}
                     </tbody>
                 </table>
             </div>
@@ -69,5 +74,3 @@ const AccountList: React.FC = () => {
         </>
     )
 }
-
-export default AccountList

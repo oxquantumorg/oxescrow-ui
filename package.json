@@ -6,6 +6,7 @@
     "tailwind": "npx tailwindcss -i ./src/input.css -o ./src/output.css",
     "tw": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "start": "npm run tailwind && react-app-rewired --openssl-legacy-provider start",
+    "dev": "concurrently \"npm run start\" \"npm run tw\"",
     "build": "npm run tailwind && react-app-rewired --openssl-legacy-provider build",
     "serve": "react-app-rewired build && node serve.js",
     "test": "react-app-rewired test",
@@ -55,6 +56,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "concurrently": "^8.2.2"
   }
 }
