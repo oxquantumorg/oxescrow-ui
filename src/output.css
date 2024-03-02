@@ -651,6 +651,26 @@ video {
   width: 60%;
 }
 
+.w-\[20px\] {
+  width: 20px;
+}
+
+.w-\[120px\] {
+  width: 120px;
+}
+
+.w-\[220px\] {
+  width: 220px;
+}
+
+.w-\[98\%\] {
+  width: 98%;
+}
+
+.w-\[94\%\] {
+  width: 94%;
+}
+
 .max-w-sm {
   max-width: 24rem;
 }

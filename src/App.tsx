@@ -43,15 +43,17 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo mx-auto" alt="logo" />
-        <h3 className="text-white text-center">
-          Welcome to Oxescrow
+        <h3 className="font-semibold text-center">
+          Oxescrow
         </h3>
-        <h3 className="text-white text-center">
-          <div className='text-[20px] mt-[10px]'>
-            <p> Connected wallet </p>
-            <p className="text-blue-400 font-semibold text-[17px]">{publicKey && shortenAddress(publicKey.toString())}</p>
-          </div>
-        </h3>
+        {publicKey &&
+          <h3 className="text-white text-center">
+            <div className='text-[20px] mt-[10px]'>
+              <p> Connected wallet </p>
+              <p className="text-blue-400 font-semibold text-[17px]">{shortenAddress(publicKey.toString())}</p>
+            </div>
+          </h3>
+        }
 
         <div className="flex justify-center mt-2 flex-col items-center">
           <div className="md:w-[50%] mb-8">
@@ -70,7 +72,7 @@ function App() {
           <div className="md:w-[50%] mb-20">
             <CreateEscrow setErrMsg={setErrMsg} setMsg={setMsg} />
           </div>
-          <div className="w-[100%] md:w-[50%] mb-20">
+          <div className="w-[94%] md:w-[50%] mb-20">
             <div className="flex mb-4">
               <Button onClickHandler={setShowHistory} disabled={!!publicKey} text="Show history &gt;&gt;" />
               <div className="text-[17px] ml-8 text-blue-500">
