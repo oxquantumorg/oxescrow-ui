@@ -31,7 +31,7 @@ function CreateEscrow({ setMsg, setErrMsg }: any) {
     return (
         <form className="max-w-sm mx-auto">
             <h1 className='text-blue-500 text-[15px] mb-5'>
-                Enter the expected USDT amount. Our API will generate a unique address for escrow.
+                Enter the expected Usdc amount. Our API will generate a unique address for escrow.
                 Share this address with the sender to receive the escrowed funds securely.</h1>
 
             <div className="mb-5">

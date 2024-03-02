@@ -75,7 +75,7 @@ function App() {
               <Button onClickHandler={setShowHistory} disabled={!!publicKey} text="Show history &gt;&gt;" />
               <div className="text-[17px] ml-8 text-blue-500">
                 <p> Sol Balance: {balance.toFixed(2)} </p>
-                <p> Usdt Balance: {tokenBalance.toFixed(2)} </p>
+                <p> Usdc Balance: {tokenBalance.toFixed(2)} </p>
               </div>
             </div>
             <AccountList showHistory={showHistory} />
