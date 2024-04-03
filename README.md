@@ -1,5 +1,9 @@
 # Oxescrow Payments Frontend
 
+Project Description:
+We are building a decentralized escrow payments system called OxEscrow. OxEscrow allows users to securely conduct transactions by escrowing funds until certain conditions are met, such as the delivery of goods or completion of services. The system is built on the Solana blockchain and utilizes smart contracts to automate the escrow process. With OxEscrow, users can transact with confidence, knowing that their funds are protected until both parties fulfil their obligations.
+
+
 ## Run
 
 ```
