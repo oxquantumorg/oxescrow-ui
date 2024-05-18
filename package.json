@@ -7,7 +7,8 @@
     "tw": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "start": "npm run tailwind && react-app-rewired --openssl-legacy-provider start",
     "dev": "concurrently \"npm run start\" \"npm run tw\"",
-    "build": "npm run tailwind && react-app-rewired build",
+    "build": "npm run tailwind && react-app-rewired --openssl-legacy-provider build",
+    "fleekbuild": "npm run tailwind && react-app-rewired build",
     "serve": "react-app-rewired build && node serve.js",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
